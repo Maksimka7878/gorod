@@ -8,6 +8,7 @@ import PromotionsPage from '@/pages/PromotionsPage';
 import StoresPage from '@/pages/StoresPage';
 import BlogPage from '@/pages/BlogPage';
 import LoginPage from '@/pages/LoginPage';
+import AdminPage from '@/pages/AdminPage';
 import './App.css';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/loyalty" element={<PromotionsPage />} />
           <Route path="/orders" element={<LoginPage />} />
           <Route path="/my-books" element={<LoginPage />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </Router>
     </CartProvider>
