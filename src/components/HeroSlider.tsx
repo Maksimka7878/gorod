@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { banners } from '@/data/books';
 
@@ -16,13 +17,13 @@ export default function HeroSlider() {
 
   useEffect(() => {
     if (!isAutoPlaying) return;
-    
+
     const interval = setInterval(nextSlide, 5000);
     return () => clearInterval(interval);
   }, [isAutoPlaying, nextSlide]);
 
   return (
-    <section 
+    <section
       className="relative w-full py-4"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
@@ -32,7 +33,7 @@ export default function HeroSlider() {
           {/* Main Slider - Left */}
           <div className="flex-1 relative h-[300px] md:h-[360px] lg:h-[400px] rounded-xl overflow-hidden">
             {/* Slides */}
-            <div 
+            <div
               className="flex transition-transform duration-500 ease-out h-full"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
@@ -56,12 +57,13 @@ export default function HeroSlider() {
                         {banner.subtitle}
                       </p>
                     )}
-                    <button 
-                      className="w-fit px-5 py-2 rounded-lg font-medium text-sm transition-colors hover:opacity-90"
+                    <Link
+                      to={banner.link}
+                      className="w-fit px-5 py-2 rounded-lg font-medium text-sm transition-colors hover:opacity-90 inline-block"
                       style={{ backgroundColor: '#E0F7FA', color: '#1A1A1A' }}
                     >
                       Подробнее
-                    </button>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -89,11 +91,10 @@ export default function HeroSlider() {
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`h-1.5 rounded-full transition-all ${
-                    index === currentSlide
-                      ? 'w-5 bg-[#26C6DA]'
-                      : 'w-1.5 bg-gray-300 hover:bg-gray-400'
-                  }`}
+                  className={`h-1.5 rounded-full transition-all ${index === currentSlide
+                    ? 'w-5 bg-[#26C6DA]'
+                    : 'w-1.5 bg-gray-300 hover:bg-gray-400'
+                    }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
@@ -103,7 +104,8 @@ export default function HeroSlider() {
           {/* Side Cards - Right */}
           <div className="hidden lg:flex flex-col gap-3 w-[280px]">
             {/* Card 1 - Hits 2025 */}
-            <div 
+            <Link
+              to="/catalog?section=new"
               className="flex-1 rounded-xl overflow-hidden relative cursor-pointer group p-4"
               style={{ backgroundColor: '#FFF8E1' }}
             >
@@ -122,10 +124,11 @@ export default function HeroSlider() {
               <div className="absolute right-3 bottom-3 w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#C62828' }}>
                 <span className="text-white text-lg">📚</span>
               </div>
-            </div>
+            </Link>
 
             {/* Card 2 - Gifts */}
-            <div 
+            <Link
+              to="/catalog?category=3"
               className="flex-1 rounded-xl overflow-hidden relative cursor-pointer group p-4"
               style={{ backgroundColor: '#FCE4EC' }}
             >
@@ -144,10 +147,11 @@ export default function HeroSlider() {
               <div className="absolute right-3 bottom-3 w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#C62828' }}>
                 <span className="text-white text-lg">🎁</span>
               </div>
-            </div>
+            </Link>
 
             {/* Card 3 - Board Games */}
-            <div 
+            <Link
+              to="/catalog?category=4"
               className="flex-1 rounded-xl overflow-hidden relative cursor-pointer group p-4"
               style={{ backgroundColor: '#E0F7FA' }}
             >
@@ -166,7 +170,7 @@ export default function HeroSlider() {
               <div className="absolute right-3 bottom-3 w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#00838F' }}>
                 <span className="text-white text-lg">🎲</span>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
