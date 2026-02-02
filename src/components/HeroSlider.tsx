@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { banners } from '@/data/books';
+import OptimizedImage from './OptimizedImage';
 
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -42,10 +43,11 @@ export default function HeroSlider() {
                   key={banner.id}
                   className="min-w-full h-full relative"
                 >
-                  <img
+                  <OptimizedImage
                     src={banner.image}
                     alt={banner.title}
                     className="w-full h-full object-cover"
+                    priority={parseInt(banner.id) === 1} // Prioritize first banner
                   />
                   {/* Content overlay */}
                   <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-10">

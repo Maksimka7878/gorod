@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ChevronRight, Bookmark, Share2, Truck, Shield, RotateCcw } from 'lucide-react';
+import { toast } from "sonner";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
@@ -148,6 +149,7 @@ export default function ProductPage() {
                     for (let i = 0; i < quantity; i++) {
                       addToCart(book);
                     }
+                    toast.success("Товар добавлен в корзину");
                   }}
                   className="flex-1 h-11 rounded-lg font-medium transition-colors hover:opacity-90"
                   style={{ backgroundColor: '#E0F7FA', color: '#1A1A1A' }}

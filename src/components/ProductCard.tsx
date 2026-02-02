@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Bookmark } from 'lucide-react';
+import { toast } from "sonner";
 import type { Book } from '@/types';
 import { useCart } from '@/context/CartContext';
+import OptimizedImage from './OptimizedImage';
 
 interface ProductCardProps {
   book: Book;
@@ -32,7 +34,10 @@ function StarRating({ rating, reviewCount }: { rating: number; reviewCount: numb
 
 export default function ProductCard({ book }: ProductCardProps) {
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, items } = useCart();
+
+  const cartItem = items.find(item => item.id === book.id);
+  const quantityInCart = cartItem ? cartItem.quantity : 0;
 
   const coverTypeText = book.coverType === 'hard' ? 'Твердая обложка' : 'Мягкая обложка';
 
@@ -60,7 +65,7 @@ export default function ProductCard({ book }: ProductCardProps) {
 
       {/* Image */}
       <Link to={`/product/${book.id}`} className="block relative aspect-[2/3] overflow-hidden bg-gray-100">
-        <img
+        <OptimizedImage
           src={book.cover}
           alt={book.title}
           className="w-full h-full object-cover"
@@ -105,11 +110,18 @@ export default function ProductCard({ book }: ProductCardProps) {
         <div className="flex items-center gap-2 mt-2.5">
           {/* Buy Button */}
           <button
-            onClick={() => addToCart(book)}
-            className="flex-1 py-1.5 px-3 rounded-lg font-medium text-sm transition-colors hover:opacity-90"
-            style={{ backgroundColor: '#E0F7FA', color: '#1A1A1A' }}
+            onClick={() => {
+              addToCart(book);
+              toast.success("Товар добавлен в корзину");
+            }}
+            className={`flex-1 py-1.5 px-3 rounded-lg font-medium text-sm transition-colors hover:opacity-90 ${quantityInCart > 0 ? 'bg-teal-100 text-teal-900' : ''
+              }`}
+            style={{
+              backgroundColor: quantityInCart > 0 ? '#B2EBF2' : '#E0F7FA',
+              color: '#1A1A1A'
+            }}
           >
-            Купить
+            {quantityInCart > 0 ? `${quantityInCart} в корзине` : 'Купить'}
           </button>
 
           {/* Bookmark */}

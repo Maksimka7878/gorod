@@ -11,29 +11,34 @@ import LoginPage from '@/pages/LoginPage';
 import AdminPage from '@/pages/AdminPage';
 import './App.css';
 
+import { Toaster } from "@/components/ui/sonner";
+
 function App() {
   return (
-    <CartProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/catalog" element={<CatalogPage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/promotions" element={<PromotionsPage />} />
-          <Route path="/stores" element={<StoresPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/sale" element={<CatalogPage />} />
-          <Route path="/comics" element={<CatalogPage />} />
-          <Route path="/certificates" element={<PromotionsPage />} />
-          <Route path="/loyalty" element={<PromotionsPage />} />
-          <Route path="/orders" element={<LoginPage />} />
-          <Route path="/my-books" element={<LoginPage />} />
-          <Route path="/admin" element={<AdminPage />} />
-        </Routes>
-      </Router>
-    </CartProvider>
+    <>
+      <CartProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/promotions" element={<PromotionsPage />} />
+            <Route path="/stores" element={<StoresPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/sale" element={<CatalogPage />} />
+            <Route path="/comics" element={<CatalogPage />} />
+            <Route path="/certificates" element={<PromotionsPage />} />
+            <Route path="/loyalty" element={<PromotionsPage />} />
+            <Route path="/orders" element={<LoginPage />} />
+            <Route path="/my-books" element={<LoginPage />} />
+            <Route path="/admin" element={<AdminPage />} />
+          </Routes>
+        </Router>
+      </CartProvider>
+      <Toaster />
+    </>
   );
 }
 

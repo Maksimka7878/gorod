@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { promoCards } from '@/data/books';
+import OptimizedImage from './OptimizedImage';
 
 export default function PromoCards() {
   return (
@@ -37,7 +38,7 @@ export default function PromoCards() {
 
               {/* Decorative Image */}
               <div className="absolute right-0 bottom-0 w-32 h-32 md:w-40 md:h-40">
-                <img
+                <OptimizedImage
                   src={card.image}
                   alt={card.title}
                   className="w-full h-full object-cover rounded-tl-3xl opacity-80 group-hover:scale-105 transition-transform duration-300"
